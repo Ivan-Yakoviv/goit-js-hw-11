@@ -8,7 +8,7 @@ fetchUsersBtn.addEventListener("click", () => {
 });
 
 const searchParams = new URLSearchParams({
-  _limit: 5,
+  _limit: 15,
   _sort: "name",
 });
 
@@ -40,3 +40,81 @@ function renderUsers(users) {
     .join("");
   userList.insertAdjacentHTML("beforeend", markup);
 }
+
+
+
+
+const postToAdd = {
+  title: "CRUD",
+  body: "CRUD is awesome!",
+};
+
+const options = {
+  method: "POST",
+  body: JSON.stringify(postToAdd),
+  headers: {
+    "Content-Type": "application/json; charset=UTF-8",
+  },
+};
+
+fetch("https://jsonplaceholder.typicode.com/posts", options)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  })
+  .then(post => console.log(post))
+  .catch(error => console.log(error));
+
+  // Change value of id property to update different post
+const postToUpdate = {
+  id: 1,
+  title: "CRUD",
+  body: "CRUD is really awesome!",
+};
+
+const option = {
+  method: "PATCH",
+  body: JSON.stringify(postToUpdate),
+  headers: {
+    "Content-Type": "application/json; charset=UTF-8",
+  },
+};
+
+fetch(`https://jsonplaceholder.typicode.com/posts/${postToUpdate.id}`, option)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  })
+  .then(post => console.log(post))
+  .catch(error => console.log("ERROR:", error));
+
+
+
+fetch(`https://jsonplaceholder.typicode.com/posts/1`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  })
+  .then((posts) => console.log(posts))
+  .catch((error) => console.log(error));
+
+
+const postIdToDelete = 101;
+
+fetch(`https://jsonplaceholder.typicode.com/posts/${postIdToDelete}`, {
+  method: "DELETE",
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  })
+  .then((deletedPost) => console.log(deletedPost))
+  .catch(error => console.log("Error:", error));
