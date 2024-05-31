@@ -7,16 +7,15 @@
     <title>goit-js-hw-11</title>
     
     <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-10c40100.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-34a055b8.css">
   </head>
   <body>
-    <section>
-      <h1>goit-js-hw-11</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="/goit-js-hw-11/assets/javascript-8dac5379.svg" alt="" />
-    </section>
-    <button type="button" class="btn">Fetch users</button>
-    <ul class="user-list"></ul>
+    <form class="search-form" id="form">
+      <input type="text" name="query" placeholder="Search images..." required />
+      <button class="search-button" type="submit">Search</button>
+    </form>
+    <div class="loader"></div>
+    <div class="gallery"></div>
 
     
   </body>
