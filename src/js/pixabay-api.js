@@ -22,4 +22,4 @@ export function getPhotos(query) {
         .then(data => data.hits);
 }
 
-getPhotos("dogs");
+// getPhotos("dogs");
