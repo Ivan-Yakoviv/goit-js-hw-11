@@ -1,4 +1,4 @@
-export async function getPhotos(query) {
+export function getPhotos(query) {
     const baseUrl = 'https://pixabay.com';
     const endPoint = '/api/';
 
@@ -12,7 +12,14 @@ export async function getPhotos(query) {
 
     const url = `${baseUrl}${endPoint}?${params}`;
 
-    return fetch(url).then(res => res.json());
+    return fetch(url)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(res.status);
+            }
+            return res.json();
+        })
+        .then(data => data.hits);
 }
 
-getPhotos("cats");
+getPhotos("dogs");
