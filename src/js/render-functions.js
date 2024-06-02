@@ -1,15 +1,8 @@
-// Описаний у документації
-import iziToast from "izitoast";
-// Додатковий імпорт стилів
-import "izitoast/dist/css/iziToast.min.css";
-import simpleLightbox from "simplelightbox";
-// Описаний у документації
 import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const gallery = document.querySelector(".gallery");
-const loader = document.querySelector(".loader");
+
 let lightbox;
 
 export function renderGallery(images) {
@@ -17,22 +10,26 @@ export function renderGallery(images) {
     if (lightbox) {
         lightbox.refresh();
     } else {
-        lightbox = new simpleLightbox(".gallery a", {});
+        lightbox = new SimpleLightbox(".gallery a", { captionDelay: 250, captionsData: "alt" });
+        lightbox.refresh();
     }
 }
 
 function createMarkup(image) {
     return `
-    <div class="gallery-item">
-                <a href="${image.largeImageURL}" class="gallery-link">
-                    <img src="${image.webformatURL}" alt="${image.tags}" />
-                </a>
-                <ul>
-                <li><p>Likes: ${image.likes}</p></li>
-                <li><p>Views: ${image.views}</p></li>
-                <li><p>Comments: ${image.comments}</p></li>
-                <li><p>Downloads: ${image.downloads}</p></li>
+                <a class="link" href="${image.largeImageURL}" class="gallery-link">
+                    <img class="gallery-image" src="${image.webformatURL}" alt="${image.tags}" />
+                <ul class="info">
+                 <li><h3 class="info-title">Likes</h3><p class="info-text">${image.likes}</p></li>
+                 <li><h3 class="info-title">Views</h3><p class="info-text">${image.views}</p></li>
+                 <li><h3 class="info-title">Comments</h3><p class="info-text">${image.comments}</p></li>
+                 <li><h3 class="info-title">Downloads</h3><p class="info-text">${image.downloads}</p></li>
                 </ul>
-            </div>
+                </a>
             `;
+}
+
+export function clearGallery() {
+    const gallery = document.querySelector(".gallery");
+    gallery.innerHTML = "";
 }
