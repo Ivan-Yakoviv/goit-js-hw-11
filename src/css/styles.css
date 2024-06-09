@@ -104,12 +104,13 @@ input:active {
 }
 
 .gallery {
-  width: 1440px;
+  width: 1152px;
   margin: 0 auto;
-  padding: 24px 156px;
-  display: grid;
-  grid-area: auto;
-  grid-template-columns: repeat(3, 360px);
+  /* padding: 24px 156px; */
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-area: auto;
+  grid-template-columns: repeat(3, 360px); */
   gap: 24px;
   background-color: #ffffff;
   border-radius: 8px;
